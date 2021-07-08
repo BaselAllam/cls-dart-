@@ -1,11 +1,4 @@
-// Stds
-// name, email, age, upsent
-// 5 Students
 
-// 1- Validation for each email ( @, .com, lower case, white spaces ) //
-// 2- validation if upsent > 5 : remove student
-// 3- validation if upsent > 3 : add warning field into his map
-// 4- avg students ages > reduce
 
 bool emailValidator(String email) {
 
@@ -38,7 +31,7 @@ int checkStdUpsent(List<String> upsent) {
 }
 
 
-addStd(List<Map<String, dynamic>> lsitToAddTo, String stdName, String stdEmail, int stdAge, List<String> stdUpsent) {
+addStd(List<Map<String, dynamic>> lsitToAddTo, String stdName, String stdEmail, int stdAge, List<String> stdUpsent, {bool? graduated}) {
 
   bool emailValid = emailValidator(stdEmail);
 
@@ -50,8 +43,13 @@ addStd(List<Map<String, dynamic>> lsitToAddTo, String stdName, String stdEmail, 
         'name' : stdName,
         'email' : stdEmail,
         'age' : stdAge,
-        'upsent' : stdUpsent
-      }; 
+        'upsent' : stdUpsent,
+        'graduated' : graduated
+      };
+
+      if(newStd['graduated'] == null){
+        newStd.remove('graduated');
+      }
 
       lsitToAddTo.add(newStd);
     }else{
@@ -64,6 +62,23 @@ addStd(List<Map<String, dynamic>> lsitToAddTo, String stdName, String stdEmail, 
 }
 
 
+avg(List x) {
+
+  try{
+    int total = x.reduce((i, y) => i + y);
+
+    int len = x.length;
+
+    double avg = total / len;
+
+    // print(avg);
+
+    return avg;
+  }catch(e) {
+    print(e);
+  }
+
+}
 
 
 void main() {
@@ -71,9 +86,10 @@ void main() {
   List<Map<String, dynamic>> stdss = [
     {
       'name': 'yousef',
-      'email': 'yousefyahoo.com',
+      'email': 'yousef@yahoo.com',
       'age': 19,
-      'absent': ['10-6-2021', '20-6-2021', '3-5-2021', '6-6-2021']
+      'absent': ['10-6-2021', '20-6-2021', '3-5-2021', '6-6-2021'],
+      'graduated' : true,
     },
     {
       'name': 'ahmed',
@@ -110,12 +126,16 @@ void main() {
 
   List<Map<String, dynamic>> stds = [];
 
-  for(var i in stdss){
-    addStd(stds, i['name'], i['email'], i['age'], i['absent']);
-  }
+  List x = [10, 20, '30'];
+
+  print(avg(x));
+
+  // for(var i in stdss){
+  //   addStd(stds, i['name'], i['email'], i['age'], i['absent'], graduated : i['graduated']);
+  // }
 
 
-  print(stds);
+  // print(stds);
 
 
 }
@@ -128,16 +148,3 @@ void main() {
 
 
 
-// avg(List x) {
-
-//   int total = x.reduce((i, y) => i + y);
-
-//   int len = x.length;
-
-//   double avg = total / len;
-
-//   // print(avg);
-
-//   return avg;
-
-// }
