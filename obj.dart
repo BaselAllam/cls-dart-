@@ -1,4 +1,5 @@
 
+// Models
 
 class Meal{
 
@@ -15,8 +16,11 @@ class MealType{
 
   String? mealTypeName;
   List<Meal>? meals;
+  int _numberOfAvailableMeal = 5;
+  int get numberOfAvailableMeal => _numberOfAvailableMeal;
 
   MealType(this.mealTypeName, this.meals);
+
 }
 
 
@@ -29,69 +33,11 @@ class CalendarDay{
 }
 
 
+// Controllers
 
-///////////////// Date Section ////////////////////
+class MealController{
 
-
-List<CalendarDay> createCalendarDayObjList(int numberOfDays, List mealTypesDataSets, List mealSets) {
-
-  List<CalendarDay> allCalendarDays = [];
-
-  for(int i = 0; i < numberOfDays; i++) {
-    List<MealType> newMealTypeObjList = createListOfMealTypeObj(mealTypesDataSets, mealSets);
-    CalendarDay newDayObj = calendarDayObj('10-15-2021', newMealTypeObjList);
-    allCalendarDays.add(newDayObj);
-  }
-
-  return allCalendarDays;
-}
-
-
-
-CalendarDay calendarDayObj(String date, List<MealType> mealTypes) {
-
-
-  CalendarDay dateObj = CalendarDay('10-2-2021', mealTypes);
-
-  return dateObj;
-}
-
-
-///////////////// Date Section ////////////////////
-
-
-///////////////// Meal Type Section ////////////////////
-
-
-List<MealType> createListOfMealTypeObj(List mealTypeSet, List mealsSets) {
-
-  List<MealType> allMealTypes = [];
-
-  for(var i in mealTypeSet) {
-    List<Meal> mealsList = createMealObjList(mealsSets);
-    MealType newMealTypeObj = mealTypeObj(i, mealsList);
-    allMealTypes.add(newMealTypeObj);
-  }
-
-  return allMealTypes;
-}
-
-
-MealType mealTypeObj(String mealTypeName, List<Meal> meals) {
-
-  MealType mealTypeObj = MealType(mealTypeName, meals);
-
-  return mealTypeObj;
-}
-
-
-///////////////// End of Meal Type Section ////////////////////
-
-
-///////////////// Meal Section ////////////////////
-
-
-List<Meal> createMealObjList(List meals) {
+  List<Meal> createMealObjList(List meals) {
 
   List<Meal> allMeals = [];
 
@@ -103,16 +49,75 @@ List<Meal> createMealObjList(List meals) {
   return allMeals;
 }
 
-Meal mealObj(String mealName, int mealPrice, String description) {
 
-  Meal mealObj = Meal(mealName, mealPrice, description);
+  Meal mealObj(String mealName, int mealPrice, String description) {
 
-  return mealObj;
+    Meal mealObj = Meal(mealName, mealPrice, description);
+
+    return mealObj;
+  }
+
 }
 
 
-///////////////// End of Meal Type Section ////////////////////
+class MealTypeController{
 
+  MealController meal = MealController();
+
+  List<MealType> createListOfMealTypeObj(List mealTypeSet, List mealsSets) {
+
+  List<MealType> allMealTypes = [];
+
+  for(var i in mealTypeSet) {
+    List<Meal> mealsList = meal.createMealObjList(mealsSets);
+    MealType newMealTypeObj = mealTypeObj(i, mealsList);
+    if(mealsList.length > newMealTypeObj.numberOfAvailableMeal) {
+      print('cant add more meals');
+    }else{
+      allMealTypes.add(newMealTypeObj);
+    }
+  }
+
+  return allMealTypes;
+}
+
+
+  MealType mealTypeObj(String mealTypeName, List<Meal> meals) {
+
+    MealType mealTypeObj = MealType(mealTypeName, meals);
+
+    return mealTypeObj;
+  }
+}
+
+
+class CalendarDayController{
+
+  MealTypeController mealType = MealTypeController();
+
+  List<CalendarDay> createCalendarDayObjList(int numberOfDays, List mealTypesDataSets, List mealSets) {
+
+  List<CalendarDay> allCalendarDays = [];
+
+  for(int i = 0; i < numberOfDays; i++) {
+    List<MealType> newMealTypeObjList = mealType.createListOfMealTypeObj(mealTypesDataSets, mealSets);
+    CalendarDay newDayObj = calendarDayObj('10-15-2021', newMealTypeObjList);
+    allCalendarDays.add(newDayObj);
+  }
+
+  return allCalendarDays;
+}
+
+
+
+  CalendarDay calendarDayObj(String date, List<MealType> mealTypes) {
+
+
+    CalendarDay dateObj = CalendarDay('10-2-2021', mealTypes);
+
+    return dateObj;
+  }
+}
 
 
 void main() {
@@ -135,9 +140,29 @@ void main() {
       'mealPrice' : 300,
       'description' : 'Fish Meal',
     },
+    {
+      'mealName' : 'Fish',
+      'mealPrice' : 300,
+      'description' : 'Fish Meal',
+    },
+    {
+      'mealName' : 'Fish',
+      'mealPrice' : 300,
+      'description' : 'Fish Meal',
+    },
   ];
 
-  List<CalendarDay> allDates = createCalendarDayObjList(3, mealTypesDataSet, mealsSet);
+  CalendarDayController calendarDayController = CalendarDayController();
+
+  List<CalendarDay> allDates = calendarDayController.createCalendarDayObjList(3, mealTypesDataSet, mealsSet);
+
+  for(var i in allDates){
+    for(var x in i.mealTypes!){
+      for(var o in x.meals!) {
+        print(o.mealName);
+      }
+    }
+  }
 
   print(allDates);
 
