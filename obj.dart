@@ -1,37 +1,45 @@
-// Breakfast, Dinner, Launch, Snacks => buy 
-
-// انا عايز العميل يختار وجبات الشهر كلها مرة واحدة
-
-// Calendar Object => Month Days
-// Meals Object => Meal Data
-// Meal Type Object => Meal Type Data
-
-// Subscribtion Object => Collection of all Above 
 
 
-// 1- Open Calendar 
-// 2- one day => List<MealTypes> 
-// 3- Add each meal inside each meal type
-// 4- Add All meals for each meal types for each day 
+class Meal{
+
+  String? mealName;
+  int? mealPrice;
+  String? description;
+
+  Meal(this.mealName, this.mealPrice, this.description);
+
+}
 
 
-// CalendarDay Object => Date, Available Meal Type<List<MealTypeObject>
+class MealType{
 
-// Meal Type => Name, List<Meals>
+  String? mealTypeName;
+  List<Meal>? meals;
 
-// Meal Object => Name, price, description
+  MealType(this.mealTypeName, this.meals);
+}
+
+
+class CalendarDay{
+
+  String? date;
+  List<MealType>? mealTypes;
+
+  CalendarDay(this.date, this.mealTypes);
+}
+
 
 
 ///////////////// Date Section ////////////////////
 
 
-List<Map<String, dynamic>> createCalendarDayObjList(int numberOfDays, List mealTypesDataSets, List mealSets) {
+List<CalendarDay> createCalendarDayObjList(int numberOfDays, List mealTypesDataSets, List mealSets) {
 
-  List<Map<String, dynamic>> allCalendarDays = [];
+  List<CalendarDay> allCalendarDays = [];
 
   for(int i = 0; i < numberOfDays; i++) {
-    List<Map<String, dynamic>> newMealTypeObjList = createListOfMealTypeObj(mealTypesDataSets, mealSets);
-    Map<String, dynamic> newDayObj = calendarDayObj('10-15-2021', newMealTypeObjList);
+    List<MealType> newMealTypeObjList = createListOfMealTypeObj(mealTypesDataSets, mealSets);
+    CalendarDay newDayObj = calendarDayObj('10-15-2021', newMealTypeObjList);
     allCalendarDays.add(newDayObj);
   }
 
@@ -40,13 +48,10 @@ List<Map<String, dynamic>> createCalendarDayObjList(int numberOfDays, List mealT
 
 
 
-Map<String, dynamic> calendarDayObj(String date, List mealTypes) {
+CalendarDay calendarDayObj(String date, List<MealType> mealTypes) {
 
 
-  Map<String, dynamic> dateObj = {
-    'date' : date,
-    'mealTypes' : mealTypes
-  };
+  CalendarDay dateObj = CalendarDay('10-2-2021', mealTypes);
 
   return dateObj;
 }
@@ -58,13 +63,13 @@ Map<String, dynamic> calendarDayObj(String date, List mealTypes) {
 ///////////////// Meal Type Section ////////////////////
 
 
-List<Map<String, dynamic>> createListOfMealTypeObj(List mealTypeSet, List mealsSets) {
+List<MealType> createListOfMealTypeObj(List mealTypeSet, List mealsSets) {
 
-  List<Map<String, dynamic>> allMealTypes = [];
+  List<MealType> allMealTypes = [];
 
   for(var i in mealTypeSet) {
-    List<Map<String, dynamic>> mealsList = createMealObjList(mealsSets);
-    Map<String, dynamic> newMealTypeObj = mealTypeObj(i, mealsList);
+    List<Meal> mealsList = createMealObjList(mealsSets);
+    MealType newMealTypeObj = mealTypeObj(i, mealsList);
     allMealTypes.add(newMealTypeObj);
   }
 
@@ -72,12 +77,9 @@ List<Map<String, dynamic>> createListOfMealTypeObj(List mealTypeSet, List mealsS
 }
 
 
-Map<String, dynamic> mealTypeObj(String mealTypeName, List meals) {
+MealType mealTypeObj(String mealTypeName, List<Meal> meals) {
 
-  Map<String, dynamic> mealTypeObj = {
-    'mealTypeName' : mealTypeName,
-    'meals' : meals,
-  };
+  MealType mealTypeObj = MealType(mealTypeName, meals);
 
   return mealTypeObj;
 }
@@ -89,25 +91,21 @@ Map<String, dynamic> mealTypeObj(String mealTypeName, List meals) {
 ///////////////// Meal Section ////////////////////
 
 
-List<Map<String, dynamic>> createMealObjList(List meals) {
+List<Meal> createMealObjList(List meals) {
 
-  List<Map<String, dynamic>> allMeals = [];
+  List<Meal> allMeals = [];
 
   for(var i in meals) {
-    Map<String, dynamic> newMealObj = mealObj(i['mealName'], i['mealPrice'], i['description']);
+    Meal newMealObj = mealObj(i['mealName'], i['mealPrice'], i['description']);
     allMeals.add(newMealObj);
   }
 
   return allMeals;
 }
 
-Map<String, dynamic> mealObj(String mealName, int mealPrice, String description) {
+Meal mealObj(String mealName, int mealPrice, String description) {
 
-  Map<String, dynamic> mealObj = {
-    'mealName' : mealName,
-    'mealPrice' : mealPrice,
-    'description' : description,
-  };
+  Meal mealObj = Meal(mealName, mealPrice, description);
 
   return mealObj;
 }
@@ -139,7 +137,7 @@ void main() {
     },
   ];
 
-  List<Map<String, dynamic>> allDates = createCalendarDayObjList(3, mealTypesDataSet, mealsSet);
+  List<CalendarDay> allDates = createCalendarDayObjList(3, mealTypesDataSet, mealsSet);
 
   print(allDates);
 
