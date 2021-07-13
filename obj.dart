@@ -35,7 +35,11 @@ class CalendarDay{
 
 // Controllers
 
-class MealController{
+class MainController extends Inter with MealController, MealTypeController, CalendarDayController{}
+
+class Inter{}
+
+mixin MealController on Inter{
 
   List<Meal> createMealObjList(List meals) {
 
@@ -60,9 +64,7 @@ class MealController{
 }
 
 
-class MealTypeController{
-
-  MealController meal = MealController();
+mixin MealTypeController on Inter{
 
   List<MealType> createListOfMealTypeObj(List mealTypeSet, List mealsSets) {
 
@@ -91,9 +93,7 @@ class MealTypeController{
 }
 
 
-class CalendarDayController{
-
-  MealTypeController mealType = MealTypeController();
+mixin CalendarDayController on Inter{
 
   List<CalendarDay> createCalendarDayObjList(int numberOfDays, List mealTypesDataSets, List mealSets) {
 
@@ -152,9 +152,9 @@ void main() {
     },
   ];
 
-  CalendarDayController calendarDayController = CalendarDayController();
+  MainController main = MainController();
 
-  List<CalendarDay> allDates = calendarDayController.createCalendarDayObjList(3, mealTypesDataSet, mealsSet);
+  List<CalendarDay> allDates = main.createCalendarDayObjList(3, mealTypesDataSet, mealsSet);
 
   for(var i in allDates){
     for(var x in i.mealTypes!){
