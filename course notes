@@ -1,0 +1,44 @@
+1- User
+	- Std
+	- Teacher
+	
+	
+2- Courses
+	- Course Name
+	- Course Description
+	- Outline
+	- Duration
+	- Start Date
+	- End Date
+	- Number of Pax
+	- Scheduale Dates
+	- Session Duration
+	- Price
+	- Material ( List )
+
+
+3- Material
+	- Material Name
+	- Material File
+	
+	
+4- Attendance
+	- Date
+	- Course
+	- STD
+	- Teacher
+	- Status
+	
+	
+--------
+Screens:
+	1- Welcome
+	2- Login
+	3- Signup 
+	4- Home
+	5- Search Result
+	6- Course Details
+	7- Std profile
+	8- Teacher Profile
+	9- Attendance
+	10- Setting
