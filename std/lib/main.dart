@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:std/homepage.dart';
 
 
 
 void main() {
 
-  runApp(HomeScreen());
+  runApp(MyApp());
 }
 
 
 
-class HomeScreen extends StatelessWidget{
+class MyApp extends StatelessWidget{
 
 @override
   Widget build(BuildContext context) {
-    return Text('ahmed');
+    return MaterialApp(
+      home: HomePage(),
+      debugShowCheckedModeBanner: false
+    );
   }
 }
