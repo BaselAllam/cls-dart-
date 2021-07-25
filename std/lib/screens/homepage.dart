@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
+import 'package:std/widgets/categoryWidget.dart';
 
 
 
@@ -10,48 +12,57 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+Map<int, Map<String, String>>? data = {
+  0 : {
+    'img' : 'https://i.pinimg.com/originals/ae/5a/e1/ae5ae16a1f8bdad663c96a699d91e646.jpg',
+    'txt' : 'Courses'
+  },
+  1 : {
+    'img' : 'https://image.freepik.com/free-vector/education-online-concept-technology-e-books-internet-courses-graduation-process-illustration-style_126283-1688.jpg',
+    'txt' : 'Attendance'
+  },
+  2 : {
+    'img' : 'https://skillscouter.com/wp-content/uploads/2019/10/Screen-Shot-2019-10-08-at-15.26.38-pm.jpg',
+    'txt' : 'Assignment'
+  },
+};
+
   @override
   Widget build(BuildContext context) {
+    double firstContainerHeight = MediaQuery.of(context).size.height/3;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xfff4ceb7),
-        title: Text(
-          'STD',
-          style: headLineTextStyle
-        ),
-      ),
-      drawer: Drawer(
-        child: Column(
+      backgroundColor: backgroundColor,
+      body: Container(
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: [
-            SizedBox(height: 50.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      '  text1',
-                      style: headLineTextStyle,
-                    ),
-                    Text(
-                      '  Tex2',
-                      style: subLineTextStyle,
-                    ),
-                  ],
-                ),
-                Icon(Icons.ac_unit, color: Colors.red, size: 20.0)
-              ]
+            Container(
+              color: buttonColor,
+              height: firstContainerHeight,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '   Welcome Bassel\n',
+                style: headLineTextStyle
+              )
             ),
-            ListTile(
-              title: Text(
-                'text1',
-                style: headLineTextStyle,
+            Container(
+              margin: EdgeInsets.all(10.0),
+              height: MediaQuery.of(context).size.height - firstContainerHeight,
+              child: GridView.builder(
+                scrollDirection: Axis.vertical,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.0,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                ),
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: data!.length,
+                itemBuilder: (context, index) {
+                  return CategoryWidget(data![index]!['img']!, data![index]!['txt']!);
+                },
               ),
-              subtitle: Text(
-                'Tex2',
-                style: subLineTextStyle,
-              ),
-              trailing: Icon(Icons.ac_unit, color: Colors.red, size: 20.0)
             ),
           ],
         ),
