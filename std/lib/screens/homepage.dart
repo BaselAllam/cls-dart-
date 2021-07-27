@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:std/demodata.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 import 'package:std/widgets/categoryWidget.dart';
+import 'package:std/widgets/field.dart';
 
 
 
@@ -13,20 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-Map<int, Map<String, String>>? data = {
-  0 : {
-    'img' : 'https://i.pinimg.com/originals/ae/5a/e1/ae5ae16a1f8bdad663c96a699d91e646.jpg',
-    'txt' : 'Courses'
-  },
-  1 : {
-    'img' : 'https://image.freepik.com/free-vector/education-online-concept-technology-e-books-internet-courses-graduation-process-illustration-style_126283-1688.jpg',
-    'txt' : 'Attendance'
-  },
-  2 : {
-    'img' : 'https://skillscouter.com/wp-content/uploads/2019/10/Screen-Shot-2019-10-08-at-15.26.38-pm.jpg',
-    'txt' : 'Assignment'
-  },
-};
+TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +29,23 @@ Map<int, Map<String, String>>? data = {
             Container(
               color: buttonColor,
               height: firstContainerHeight,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '   Welcome Bassel\n',
-                style: headLineTextStyle
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '   Welcome Bassel\n',
+                    style: headLineTextStyle
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: field('Search', Icons.search, TextInputType.text, false, searchController),
+                  ),
+                ],
               )
             ),
             Container(
@@ -58,9 +60,9 @@ Map<int, Map<String, String>>? data = {
                   crossAxisSpacing: 15.0,
                 ),
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: data!.length,
+                itemCount: homeData!.length,
                 itemBuilder: (context, index) {
-                  return CategoryWidget(data![index]!['img']!, data![index]!['txt']!);
+                  return CategoryWidget(homeData![index]!['img']!, homeData![index]!['txt']!, homeData![index]!['screen']);
                 },
               ),
             ),

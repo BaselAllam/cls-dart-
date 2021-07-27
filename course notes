@@ -33,10 +33,10 @@
 --------
 Screens:
 	1- Welcome
-	2- Login
+	// 2- Login //
 	3- Signup 
 	// 4- Home //
-	5- Search Result
+	// 5- Search Result //
 	6- Course Details
 	7- Std profile
 	8- Teacher Profile

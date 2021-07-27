@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:std/screens/bottomnavbar.dart';
+import 'package:std/screens/login.dart';
+import 'package:std/screens/signup.dart';
 
 
 void main() {
@@ -11,8 +13,12 @@ class MyApp extends StatelessWidget{
 @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BottomNavBar(),
-      debugShowCheckedModeBanner: false
+      home: Login(),
+      debugShowCheckedModeBanner: false,
+      routes: {
+        'BottomNavBar' : (context) => BottomNavBar(),
+        'SignUp' : (context) => SignUp()
+      }
     );
   }
 }
