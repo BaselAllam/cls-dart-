@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage> {
 
 TextEditingController searchController = TextEditingController();
 
+GlobalKey<FormState> searchKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     double firstContainerHeight = MediaQuery.of(context).size.height/3;
@@ -43,7 +45,7 @@ TextEditingController searchController = TextEditingController();
                       borderRadius: BorderRadius.circular(15.0),
                       color: Colors.white,
                     ),
-                    child: field('Search', Icons.search, TextInputType.text, false, searchController),
+                    child: field('Search', Icons.search, TextInputType.text, false, searchController, searchKey),
                   ),
                 ],
               )
