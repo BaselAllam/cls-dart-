@@ -39,3 +39,61 @@ Map<int, Map<String, dynamic>>? homeData = {
     'screen' : Assignment()
   },
 };
+
+
+
+
+
+// Client Side => Part End-User
+
+    // Front-End  - Flutter
+    // UI & UX
+
+
+
+// Server Side
+
+    // Database
+        // SQL Database 
+            // MySQL
+            // PostgreSQL
+            // MsSQL
+            // OracleSQL
+          
+          // DBMS 
+          // Relationable Database
+          // Fatest
+
+        // NoSQL Database ( Docuented Database )
+            // Firebase
+            // MongoDB
+
+          // NonRelationable Database
+          // Documents => Collection ( Map )
+
+
+    // Back-End
+        // API
+        // Authentication
+        // Filteration
+        // Pagintation
+        // Machine Learning
+        // Data Analysis
+        // Security
+        // Session Handling
+        // Traffic
+
+    // API => Aplication Program Interface
+        // WebPage
+        // JSON => Java Script Object Notation
+
+        // http 
+            // url => domain name 
+            // method 
+            // body
+            // header 
+
+
+
+
+
