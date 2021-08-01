@@ -1,5 +1,6 @@
-import 'package:std/screens/assignment.dart';
-import 'package:std/screens/searchresult.dart';
+import 'package:stdweb/screens/assignment.dart';
+import 'package:stdweb/screens/attendance.dart';
+import 'package:stdweb/screens/searchresult.dart';
 
 Map<int, Map<String, dynamic>>? data = {
   0 : {
@@ -23,17 +24,17 @@ Map<int, Map<String, dynamic>>? data = {
 
 Map<int, Map<String, dynamic>>? homeData = {
   0 : {
-    'img' : 'https://i.pinimg.com/originals/ae/5a/e1/ae5ae16a1f8bdad663c96a699d91e646.jpg',
+    'img' : 'https://images.pexels.com/photos/5088008/pexels-photo-5088008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'txt' : 'Courses',
     'screen' : SearchResult()
   },
   1 : {
-    'img' : 'https://image.freepik.com/free-vector/education-online-concept-technology-e-books-internet-courses-graduation-process-illustration-style_126283-1688.jpg',
+    'img' : 'https://images.pexels.com/photos/5088008/pexels-photo-5088008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'txt' : 'Attendance',
-    'screen' : Assignment()
+    'screen' : Attendance()
   },
   2 : {
-    'img' : 'https://skillscouter.com/wp-content/uploads/2019/10/Screen-Shot-2019-10-08-at-15.26.38-pm.jpg',
+    'img' : 'https://images.pexels.com/photos/5088008/pexels-photo-5088008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'txt' : 'Assignment',
     'screen' : Assignment()
   },

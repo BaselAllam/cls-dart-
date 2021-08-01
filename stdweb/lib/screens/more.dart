@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:std/models/sharedfun.dart';
-import 'package:std/theme/sharedcolor.dart';
-import 'package:std/theme/sharedtextstyle.dart';
+import 'package:stdweb/theme/sharedcolor.dart';
+import 'package:stdweb/theme/sharedtextstyle.dart';
 
 
 
@@ -16,23 +15,19 @@ class _MoreState extends State<More> {
 final Map<int, Map<String, dynamic>> data = {
   0 : {
     'icon' : Icons.settings,
-    'txt' : 'Settings',
-    'fun' : () {}
+    'txt' : 'Settings'
   },
   1 : {
     'icon' : Icons.email,
     'txt' : 'Contact Us',
-    'fun' : () {}
   },
   2 : {
     'icon' : Icons.info,
-    'txt' : 'About Us',
-    'fun' : () {}
+    'txt' : 'About Us'
   },
   3 : {
     'icon' : Icons.exit_to_app,
-    'txt' : 'Log out',
-    'fun' : clearData()
+    'txt' : 'Log out'
   },
 };
 
@@ -61,9 +56,6 @@ final Map<int, Map<String, dynamic>> data = {
                  style: headLineTextStyle,
               ),
               trailing: Icon(Icons.arrow_forward_ios, color: subButtonColor, size: 20.0),
-              onTap: () {
-                data[index]!['fun'];
-              },
             );
           },
         ),

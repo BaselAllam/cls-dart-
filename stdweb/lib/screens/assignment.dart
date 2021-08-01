@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:std/theme/sharedcolor.dart';
-import 'package:std/theme/sharedtextstyle.dart';
+import 'package:stdweb/theme/sharedcolor.dart';
+import 'package:stdweb/theme/sharedtextstyle.dart';
 
 
 
-class Attendance extends StatefulWidget {
+class Assignment extends StatefulWidget {
 
   @override
-  _AttendanceState createState() => _AttendanceState();
+  _AssignmentState createState() => _AssignmentState();
 }
 
-class _AttendanceState extends State<Attendance> {
+class _AssignmentState extends State<Assignment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
         title: Text(
-          'Attendance',
+          'Assignment',
           style: headLineTextStyle
         ),
         iconTheme: IconThemeData(color: buttonColor),
@@ -29,7 +29,7 @@ class _AttendanceState extends State<Attendance> {
             Navigator.pop(context);
           },
         ),
-      )
+      ),
     );
   }
 }
