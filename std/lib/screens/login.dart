@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:std/models/sharedfun.dart';
+import 'package:std/models/global.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 import 'package:std/widgets/field.dart';
@@ -77,7 +77,8 @@ GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                       if(!_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(snack('Some Fields Required', Colors.red));
                       }else{
-                        saveDataLocal('email', emailController.text);
+                        Global _global = Global();
+                        _global.saveDataLocal('email', emailController.text);
                         Navigator.pushReplacementNamed(context, 'BottomNavBar');
                       }
                     },

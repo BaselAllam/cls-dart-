@@ -10,11 +10,12 @@
 	- Duration
 	- Start Date
 	- End Date
-	- Number of Pax
-	- Scheduale Dates
 	- Session Duration
 	- Price
-	- Material ( List )
+	- Material
+
+	- getCourses
+	- enroll
 
 
 3- Material
@@ -28,6 +29,9 @@
 	- STD
 	- Teacher
 	- Status
+
+	- add
+	- getAttendanceForEachStd
 	
 	
 --------

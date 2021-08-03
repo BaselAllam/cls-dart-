@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:std/models/sharedfun.dart';
+import 'package:std/models/global.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 
@@ -32,7 +32,7 @@ final Map<int, Map<String, dynamic>> data = {
   3 : {
     'icon' : Icons.exit_to_app,
     'txt' : 'Log out',
-    'fun' : clearData()
+    'fun' : () {}
   },
 };
 

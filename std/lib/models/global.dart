@@ -3,6 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 
+
+class Global{
+
+  String _domain = 'https://stds-dfc01-default-rtdb.firebaseio.com';
+
+  String get domain => _domain;
+
+
 saveDataLocal(String key, String value) async {
 
   SharedPreferences _save = await SharedPreferences.getInstance();
@@ -38,4 +46,5 @@ pickImage(ImageSource source) async {
   var _pickedImage = await _imagePicker.pickImage(source: source);
 
   return _pickedImage!.path;
+}
 }

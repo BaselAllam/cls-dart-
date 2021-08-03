@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:std/models/sharedfun.dart';
+import 'package:std/models/global.dart';
 import 'package:std/theme/sharedcolor.dart';
 
 
@@ -15,6 +15,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   bool? check;
 
+  Global global = Global();
+
 @override
 void initState() {
   checkData();
@@ -26,7 +28,7 @@ void initState() {
 }
 
 checkData() async {
-  bool? _check = await getLocalData('email');
+  bool? _check = await global.getLocalData('email');
   setState(() {
     check = _check;
   });

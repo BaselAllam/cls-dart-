@@ -5,17 +5,17 @@ Map<int, Map<String, dynamic>>? data = {
   0 : {
     'img' : 'https://cdn.publish0x.com/prod/fs/images/a35bcf8433bbab9cfb7ea96687e320fffc2c9e36a3764334180aed1054e998e2.jpeg',
     'courseName' : 'Flutter',
-    'price' : 200.5
+    'price' : 200
   },
   1 : {
     'img' : 'https://i.ytimg.com/vi/AP4cKqfSlsE/hqdefault.jpg',
     'courseName' : 'Dart',
-    'price' : 300.5
+    'price' : 300
   },
   2 : {
     'img' : 'https://www.fossmint.com/wp-content/uploads/2020/03/Udemy-Advance-Python-Learning-Courses.png',
     'courseName' : 'Python',
-    'price' : 500.5
+    'price' : 500
   },
 };
 

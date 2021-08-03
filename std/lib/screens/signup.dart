@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:std/models/sharedfun.dart';
+import 'package:std/models/global.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 import 'package:std/widgets/field.dart';
@@ -71,8 +71,9 @@ String pickedImage = '';
                       color: Colors.black,
                       iconSize: 20.0,
                       onPressed: () {
+                        Global _global = Global();
                         setState(() {
-                          pickedImage = pickImage(ImageSource.camera);
+                          pickedImage = _global.pickImage(ImageSource.camera);
                         });
                       }
                     ),
@@ -143,7 +144,8 @@ String pickedImage = '';
                       if(!_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(snack('Email Field Required', Colors.red));
                       }else{
-                        saveDataLocal('email', emailController.text);
+                        Global _global = Global();
+                        _global.saveDataLocal('email', emailController.text);
                         Navigator.pushReplacementNamed(context, 'BottomNavBar');
                       }
                     },

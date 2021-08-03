@@ -9,7 +9,7 @@ class CourseWidget extends StatefulWidget {
 
   final String img;
   final String courseName;
-  final double price;
+  final int price;
 
   CourseWidget(this.img, this.courseName, this.price);
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:std/models/sharedfun.dart';
+import 'package:std/models/global.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 
@@ -88,8 +88,9 @@ String pickedImage = '';
             iconSize: 35.0,
             onPressed: () {
               if(enabled == true) {
+                Global _global = Global();
                 setState(() {
-                  pickedImage = pickImage(ImageSource.gallery);
+                  pickedImage = _global.pickImage(ImageSource.gallery);
                 });
               }
             },
