@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:std/models/courses/coursecontroller.dart';
+import 'package:std/models/mainmodel.dart';
 import 'package:std/screens/bottomnavbar.dart';
 import 'package:std/screens/login.dart';
 import 'package:std/screens/signup.dart';
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget{
 @override
   Widget build(BuildContext context) {
     return ScopedModel(
-      model: CourseController(),
+      model: MainModel(),
       child: MaterialApp(
         home: SplashScreen(),
         debugShowCheckedModeBanner: false,

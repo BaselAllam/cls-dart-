@@ -24,6 +24,7 @@ class _EnrolledCourseState extends State<EnrolledCourse> {
             data![index]!['img'],
             data![index]!['courseName'],
             data![index]!['price'],
+            'data'
           );
         },
       )

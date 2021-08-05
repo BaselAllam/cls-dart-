@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:std/models/courses/coursecontroller.dart';
+import 'package:std/models/mainmodel.dart';
 import 'package:std/screens/enrolledcourses.dart';
 import 'package:std/screens/newcourses.dart';
 import 'package:std/theme/sharedcolor.dart';
@@ -62,7 +62,7 @@ void initState() {
         ),
       ),
       body: ScopedModelDescendant(
-        builder: (context, index, CourseController model) {
+        builder: (context, index, MainModel model) {
           return TabBarView(
             controller: tabController,
             children: [

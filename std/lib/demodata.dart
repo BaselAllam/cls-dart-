@@ -1,3 +1,4 @@
+import 'package:std/models/mainmodel.dart';
 import 'package:std/screens/assignment.dart';
 import 'package:std/screens/searchresult.dart';
 
@@ -19,7 +20,7 @@ Map<int, Map<String, dynamic>>? data = {
   },
 };
 
-
+MainModel model = MainModel();
 
 Map<int, Map<String, dynamic>>? homeData = {
   0 : {
@@ -30,12 +31,12 @@ Map<int, Map<String, dynamic>>? homeData = {
   1 : {
     'img' : 'https://image.freepik.com/free-vector/education-online-concept-technology-e-books-internet-courses-graduation-process-illustration-style_126283-1688.jpg',
     'txt' : 'Attendance',
-    'screen' : Assignment()
+    'screen' : Assignment(model)
   },
   2 : {
     'img' : 'https://skillscouter.com/wp-content/uploads/2019/10/Screen-Shot-2019-10-08-at-15.26.38-pm.jpg',
     'txt' : 'Assignment',
-    'screen' : Assignment()
+    'screen' : Assignment(model)
   },
 };
 

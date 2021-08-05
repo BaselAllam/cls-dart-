@@ -5,7 +5,7 @@ import 'package:std/models/courses/coursemodel.dart';
 import 'package:std/models/global.dart';
 
 
-class CourseController extends Model{
+mixin CourseController on Model{
 
   Global _global = Global();
 
@@ -13,6 +13,9 @@ class CourseController extends Model{
 
   bool _isGetCoursesLoading = false;
   bool get isGetCoursesLoading => _isGetCoursesLoading;
+
+  bool _isDeleteCoursesLoading = false;
+  bool get isDeleteCoursesLoading => _isDeleteCoursesLoading;
 
 
   getCourses() async {
@@ -25,13 +28,35 @@ class CourseController extends Model{
     var _data = json.decode(_response.body);
 
     _data.forEach((x, i) {
-      Course _newCourse = Course.fromJson(i);
+      Course _newCourse = Course.fromJson(i, x);
       allCourses.add(_newCourse);
     });
 
     _isGetCoursesLoading = false;
     notifyListeners();
   }
+
+  Future<bool> deleteCourse(String courseId) async {
+
+    _isDeleteCoursesLoading = true;
+    notifyListeners();
+
+    http.Response _response = await http.delete(Uri.parse('${_global.domain}/courses/$courseId.json'));
+
+    if(_response.statusCode == 200){
+      allCourses.removeWhere((Course course) {
+        return course.id == courseId;
+      });
+      _isDeleteCoursesLoading = false;
+      notifyListeners();
+      return true;
+    }else{
+      _isDeleteCoursesLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
 }
 
 
