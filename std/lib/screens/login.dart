@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:std/models/global.dart';
+import 'package:std/models/mainmodel.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 import 'package:std/widgets/field.dart';
@@ -62,26 +64,34 @@ GlobalKey<FormState> _formKey = GlobalKey<FormState>();
               field('Password', Icons.lock, TextInputType.text, true, passwordController, passwordKey),
               Column(
                 children: [
-                  TextButton(
-                    child: Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
-                    ),
-                    style: TextButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)
-                      ),
-                    ),
-                    onPressed: () {
-                      if(!_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(snack('Some Fields Required', Colors.red));
-                      }else{
-                        Global _global = Global();
-                        _global.saveDataLocal('email', emailController.text);
-                        Navigator.pushReplacementNamed(context, 'BottomNavBar');
-                      }
-                    },
+                  ScopedModelDescendant(
+                    builder:  (context, child, MainModel model) {
+                      return TextButton(
+                        child: model.isUSerLoading == true ? Center(child: CircularProgressIndicator()) : Text(
+                          'Login',
+                          style: TextStyle(color: Colors.white, fontSize: 20.0),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                        ),
+                        onPressed: () async {
+                          if(!_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(snack('Some Fields Required', Colors.red));
+                          }else{
+                            bool _isValid = await model.signIn(emailController.text, passwordController.text);
+                            if(_isValid == true) {
+                              Global _global = Global();
+                              _global.saveDataLocal('email', emailController.text);
+                              Navigator.pushReplacementNamed(context, 'BottomNavBar');
+                            }else{
+                              ScaffoldMessenger.of(context).showSnackBar(snack('Inavlida Login', Colors.red));}
+                          }
+                        },
+                      );
+                    }
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:std/demodata.dart';
+import 'package:std/responsive/responsive.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
 import 'package:std/widgets/categoryWidget.dart';
@@ -22,6 +23,7 @@ GlobalKey<FormState> searchKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     double firstContainerHeight = MediaQuery.of(context).size.height/2.3;
+    MediaQueryData data = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Container(
@@ -62,7 +64,7 @@ GlobalKey<FormState> searchKey = GlobalKey<FormState>();
                     scrollDirection: Axis.vertical,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.83,
+                      childAspectRatio: responsiveCategoryWidget(data),
                       mainAxisSpacing: 15.0,
                       crossAxisSpacing: 15.0,
                     ),

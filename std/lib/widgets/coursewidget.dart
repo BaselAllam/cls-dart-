@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:std/models/mainmodel.dart';
+import 'package:std/responsive/responsive.dart';
 import 'package:std/screens/coursedetails.dart';
 import 'package:std/theme/sharedcolor.dart';
 import 'package:std/theme/sharedtextstyle.dart';
@@ -23,6 +24,7 @@ class CourseWidget extends StatefulWidget {
 class _CourseWidgetState extends State<CourseWidget> {
   @override
   Widget build(BuildContext context) {
+    MediaQueryData data = MediaQuery.of(context);
     return ScopedModelDescendant(
       builder: (context, child, MainModel model) {
         return InkWell(
@@ -41,7 +43,7 @@ class _CourseWidgetState extends State<CourseWidget> {
           child: Row(
             children: [
               Container(
-                width: 100.0,
+                width: 70.0,
                 height: 120.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -52,7 +54,7 @@ class _CourseWidgetState extends State<CourseWidget> {
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width - 130.0,
+                width: MediaQuery.of(context).size.width - responsiveCourseWidget(data),
                 child: ListTile(
                   title: Text(
                     '${widget.courseName} \n',

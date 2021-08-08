@@ -24,7 +24,7 @@ mixin AttendanceController on Model{
       'date' : date
     };
 
-    http.Response _response = await http.post(
+    http.Response _response = await http.put(
       Uri.parse('${_global.domain}/attendance.json'),
       body: json.encode(_data)
     );

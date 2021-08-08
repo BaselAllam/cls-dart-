@@ -29,7 +29,6 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -49,8 +48,6 @@ void initState() {
       ),
       body: ScopedModelDescendant(
         builder: (context, child, MainModel model) {
-            print(model.isGetCurrentPositionLoading);
-            print(model.position);
           if(model.isGetCurrentPositionLoading == true){
             return Center(child: CircularProgressIndicator());
           }else if(model.position == 0) {
